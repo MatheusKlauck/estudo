@@ -17,13 +17,14 @@ public class subsequencias {
     }
 
     static int[] NovoRamo(int[] arrBase, int[] arrAtual, int indiceAtual) {
+        System.out.print("            Gerou novo ramo");
         int[] nwSubs = new int[arrAtual.length + 1];
-        // copia os valores atuais da subsequência
+        // copia os valores da subsequencia atual
         for (int i = 0; i < arrAtual.length; i++) {
             nwSubs[i] = arrAtual[i];
         }
-        nwSubs[nwSubs.length - 1] = arrBase[indiceAtual];
-        System.out.println("            n.r add(" + arrBase[indiceAtual] + ")");
+        nwSubs[nwSubs.length - 1] = arrBase[indiceAtual]; // Adicionou o valor do arraybase na nova posicao criada
+        System.out.println("  n.r add(" + arrBase[indiceAtual] + ")");
         return nwSubs;
     }
 
@@ -33,14 +34,12 @@ public class subsequencias {
             System.out.println("=>subs:" + displayArr(ramoAtual));
             return;
         } else {
-            System.out.println("        ramo atual:" + displayArr(ramoAtual));
+            System.out.println("        trabalhando no ramo:" + displayArr(ramoAtual));
         }
 
         // gera "ramo" que usará o valor do array base na posição "indiceAtual"
         int[] novoRamo = NovoRamo(arrBase, ramoAtual, indiceAtual);
-        System.out.println("            nova subs c/ nr");
         GerarSequencia(arrBase, indiceAtual + 1, novoRamo); // Explora o novo ramo, que inclui o elemento mais recente
-        System.out.println("            nova subs s/ nr");
         GerarSequencia(arrBase, indiceAtual + 1, ramoAtual);// Explora o ramo sem o elemento mais recente
     }
 
