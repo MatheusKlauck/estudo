@@ -1,7 +1,7 @@
 package estudo.recursao;
 
 public class subsequencias {
-    static String displayArr(int[] arr) {
+    public static String displayArr(int[] arr) {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         for (int i = 0; i < arr.length; i++) {
