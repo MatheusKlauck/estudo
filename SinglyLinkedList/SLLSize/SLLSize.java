@@ -1,4 +1,4 @@
-package estudo.SinglyLinkedList;
+package estudo.SinglyLinkedList.SLLSize;
 
 class Node<T> {
     T data;
@@ -21,24 +21,33 @@ class Node<T> {
     }
 }
 
-public class SinglyLinkedList<T> {
+public class SLLSize<T> {
     Node<T> head;
+    private int size = 0;
 
     public void addToBack(T data) {
         // To add to back of a sll we just have to point the .next node of the head to
         // the new node with the new data.
         if (head == null) {
             head = new Node<T>(data);
+            size++;
             return;
         }
 
-        head.next = new Node<T>(data);
+        Node<T> current = head;
+
+        while (current.next != null) {
+            current = current.next;
+        }
+        current.next = new Node<T>(data);
+        size++;
         System.out.println(this.toString());
     }
 
     public void addToFront(T data) {
         if (head == null) {
             head = new Node<T>(data);
+            size++;
             return;
         }
         // To add to front, we have to
@@ -52,6 +61,7 @@ public class SinglyLinkedList<T> {
         // 3. point head to the new node
         head = nw;
 
+        size++;
         System.out.println(this.toString());
     }
 
@@ -63,8 +73,10 @@ public class SinglyLinkedList<T> {
             return;
 
         // 2. if the list have only 1 value (head), we simply set head as null
-        if (head.next == null)
+        if (head.next == null) {
             head = null;
+            size--;
+        }
 
         // to remove from back in lists that we have 2+ nodes, we must:
 
@@ -78,7 +90,7 @@ public class SinglyLinkedList<T> {
 
         // we then remove the next value of the current node (last value of the list)
         current.next = null;
-
+        size--;
         System.out.println(this.toString());
     }
 
@@ -86,14 +98,16 @@ public class SinglyLinkedList<T> {
         if (head == null)
             return;
 
-        if (head.next == null)
+        if (head.next == null) {
             head = null;
+            size--;
+        }
 
         // To remove from front we simply:
 
         // 1. Set the head to the next node;
         head = head.next;
-
+        size--;
         System.out.println(this.toString());
     }
 
@@ -108,12 +122,12 @@ public class SinglyLinkedList<T> {
                 sb.append(", ");
             current = current.next;
         }
-
+        sb.append(" size: " + size);
         return sb.toString();
     }
 
     public static void main(String[] args) {
-        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        SLLSize<Integer> sll = new SLLSize<Integer>();
 
         sll.addToBack(23);
 
