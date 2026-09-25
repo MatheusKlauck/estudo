@@ -36,13 +36,11 @@ public class SLLTail<T> {
             return;
         }
 
-        Node<T> current = head;
+        Node<T> nw = new Node<T>(data);
 
-        while (current.next != null) {
-            current = current.next;
-        }
-        current.next = new Node<T>(data);
-        tail = current.next;
+        // Using tail add to back becomes o(1) complexity
+        tail.next = nw;
+        tail = nw;
         size++;
         System.out.println(this.toString());
     }
@@ -150,5 +148,6 @@ public class SLLTail<T> {
         sll.removeFromBack();
 
         sll.removeFromFront();
+        sll.removeFromBack();
     }
 }
